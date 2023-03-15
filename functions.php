@@ -12,3 +12,4 @@ function childhood_scripts() {
     wp_enqueue_script( 'childhood-scripts', get_template_directory_uri() . '/assets/js/main.min.js', array('jquery'), null, true );
 };
 
+add_theme_support('custom-logo');
