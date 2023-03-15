@@ -469,7 +469,33 @@
                         <div class="feedslider glide">
                             <div class="glide__track" data-glide-el="track">
                                 <ul class="glide__slides">
+                                <?php 
+                                    $posts = get_posts( array(
+                                        'numberposts' => -1,
+                                        'category_name'    => 'slider_review',
+                                        'orderby'     => 'date',
+                                        'order'       => 'ASC',
+                                        'post_type'   => 'post',
+                                        'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+                                    ) );
+
+                                    foreach( $posts as $post ){
+                                        setup_postdata($post);
+                                ?>
                                     <li class="glide__slide">
+                                        <div class="feedslider__title">
+                                            <?php the_field('review_author');?>
+                                        </div>
+                                        <div class="feedslider__text">
+                                            <?php the_field('review_text');?>
+                                        </div>
+                                    </li>
+                                <?php
+                                    }
+
+                                    wp_reset_postdata(); // сброс
+                                ?>
+                                    <!-- <li class="glide__slide">
                                         <div class="feedslider__title">
                                             Иванов Игорь
                                         </div>
@@ -494,7 +520,7 @@
                                         <div class="feedslider__text">
                                             Решила к дню рождения своей малышки заказать подарки здесь. И ни сколько не жалею! Мишка именно такой, как я хотела, прямо как у меня в детстве: мягкий, приятный на ощупь и оочень милый. Сразу видно, что ручная работа.
                                         </div>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
 
